@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Pactap Direct · Development status</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./unlock.mjs"></script>
+</head>
+<body>
+<main id="unlock-screen" class="unlock-page" aria-labelledby="unlock-title">
+  <p class="unlock-brand">Pactap Direct <span>Development</span></p>
+  <h1 id="unlock-title">Protected development status</h1>
+  <p class="unlock-intro">Enter the shared passphrase to view the latest published build report.</p>
+  <form id="unlock-form" autocomplete="off">
+    <label for="passphrase">Shared passphrase</label>
+    <input id="passphrase" name="passphrase" type="password" maxlength="128" autocomplete="off" spellcheck="false" autocapitalize="none" aria-describedby="unlock-help unlock-error" required>
+    <p id="unlock-help" class="unlock-help">Use the passphrase supplied by the maintainer. It stays in this page's memory until you lock or close it.</p>
+    <div class="unlock-actions"><button id="unlock-submit" type="submit">Unlock status</button><button id="cancel-unlock" type="button" hidden>Cancel</button></div>
+    <p id="unlock-status" role="status" aria-live="polite"></p>
+    <p id="unlock-error" role="alert"></p>
+  </form>
+  <p class="unlock-note">This is a development report, not an operational or release approval. Refreshing checks the latest encrypted publication; it does not query the development tools.</p>
+  <noscript><p>JavaScript is required to unlock this encrypted report.</p></noscript>
+</main>
+
+<div id="protected-content" hidden>
+  <a class="skip-link" href="#main">Skip to development status</a>
+  <div class="topbar"><a class="brand" href="#main">Pactap Direct <span>Development</span></a><nav aria-label="On this page"><a href="#work">Work</a><a href="#team">Agents</a><a href="#evidence">Evidence</a></nav></div>
+  <main id="main" class="page">
+    <header class="masthead"><div><h1>Development status</h1><p class="subtitle">The build, its evidence, and what needs attention.</p></div><div class="refresh-control"><button id="lock-dashboard" type="button">Lock dashboard</button><span id="connection" class="state">Connecting</span><button id="refresh" type="button">Refresh now</button></div></header>
+    <div class="freshness"><span>Snapshot <time id="updated-at">unavailable</time></span><span id="snapshot-age">Age unavailable</span><span>Now <time id="clock">—</time></span><span id="next-poll">Next refresh pending</span></div>
+    <div id="notice" class="notice" role="status" aria-live="polite">Loading the latest reported evidence…</div>
+    <section class="overview" aria-labelledby="outcome-title"><div class="outcome"><h2 id="outcome-title">Waiting for a status report</h2><p id="summary">The last valid snapshot will stay visible if a refresh fails.</p><p id="report-source" class="metadata">Source not yet received</p></div><div class="progress-summary"><h2>Delivery checklist</h2><p id="progress-value" class="progress-value">Not reported</p><progress id="acceptance-progress" hidden aria-label="Completed groups of approved criteria"></progress><p id="checkpoint-value" class="section-description">Checkpoint count unavailable</p><progress id="checkpoint-progress" hidden aria-label="Completed implementation checkpoints"></progress><p id="progress-basis" class="muted">A completed acceptance-unit count is required before showing a progress bar.</p></div></section>
+    <section class="timing" aria-label="Build time window"><dl><div><dt>Delivery window started</dt><dd id="started-at">Not reported</dd></div><div><dt>Original 48-hour target</dt><dd id="target-at">Not reported</dd></div><div><dt>Actual elapsed</dt><dd id="elapsed">Not reported</dd></div><div><dt>Time to target</dt><dd id="remaining">Not reported</dd></div></dl><div class="item"><div class="item-heading"><h2>Expected completion</h2><span id="forecast-confidence" class="state">Confidence unavailable</span></div><p id="forecast-at">Not yet estimable</p><p id="forecast-basis">The target date is not a verified completion forecast.</p><p id="forecast-observed" class="metadata">Assessment unavailable</p><details><summary>Forecast assumptions and next assessment</summary><ul id="forecast-conditions"></ul><p id="forecast-review"></p></details></div></section>
+    <section id="blockers-section" class="attention" aria-labelledby="blockers-title"><div class="section-heading"><h2 id="blockers-title">Needs attention</h2><span id="blocker-count" class="count">Awaiting report</span></div><div id="blockers" class="stack"><p class="empty">Blockers and unresolved dependencies will appear here.</p></div></section>
+    <div class="work-layout">
+      <section id="work" aria-labelledby="tasks-title"><div class="section-heading"><h2 id="tasks-title">Work plan</h2><span id="task-count" class="count">Awaiting report</span></div><p id="task-basis" class="section-description">Granular tasks are supplied by the status report.</p><div class="filters"><div><label for="task-search">Find a task</label><input id="task-search" type="search" placeholder="Task, module or owner" autocomplete="off"></div><div><label for="task-filter">Task state</label><select id="task-filter"><option value="all">All states</option><option value="active">Active</option><option value="planned">Planned</option><option value="done">Done</option><option value="blocked">Blocked</option></select></div></div><div id="tasks" class="stack"><p class="empty">No task report received yet.</p></div><div id="task-pages" class="pagination" hidden><button id="previous-tasks" type="button">Previous</button><span id="task-page" class="metadata"></span><button id="next-tasks" type="button">Next</button></div></section>
+      <section id="team" aria-labelledby="agents-title"><div class="section-heading"><h2 id="agents-title">Task and worker records</h2><span id="agent-count" class="count">Awaiting report</span></div><p class="section-description">One parent Codex task can contain internal workers. Retained records are not a count of running agents.</p><p id="runtime-summary" class="section-description">Runtime observation unavailable.</p><p id="runtime-source" class="metadata">Only a captured Codex tool observation establishes runtime state.</p><div id="agents" class="stack"><p class="empty">No agent report received yet.</p></div></section>
+    </div>
+    <div class="support-layout"><section aria-labelledby="routing-title"><div class="section-heading"><h2 id="routing-title">Routing policy</h2></div><p class="section-description">Policy targets and recorded dispatch requests. Actual inference telemetry is not exposed.</p><div id="routing" class="stack"><p class="empty">Routing rationale not reported.</p></div></section><section aria-labelledby="usage-title"><div class="section-heading"><h2 id="usage-title">Usage observations</h2></div><div id="usage" class="stack"><p class="empty">Usage is unavailable until its source, scope and observation time are reported.</p></div></section></div>
+    <section id="evidence" aria-labelledby="checks-title"><div class="section-heading"><h2 id="checks-title">Verification evidence</h2><span id="check-count" class="count">Awaiting report</span></div><p class="section-description">A passing check applies only to its stated scope. It does not establish production readiness.</p><div id="checks" class="stack"><p class="empty">No checks reported yet.</p></div></section>
+    <section id="activity-section" aria-labelledby="activity-title"><div class="section-heading"><h2 id="activity-title">Recent activity</h2><span class="count">Reported events</span></div><div id="activity" class="stack"><p class="empty">No activity stream reported.</p></div></section>
+    <details class="milestone-disclosure"><summary>Module milestones <span id="milestone-count" class="count"></span></summary><div id="modules" class="stack"></div><div id="milestones" class="stack"></div></details>
+    <footer><section aria-labelledby="checkpoint-title"><h2 id="checkpoint-title">Private checkpoint</h2><div id="checkpoint"><p class="empty">No verified checkpoint reported.</p></div></section><section aria-labelledby="links-title"><h2 id="links-title">Review links</h2><div id="links" class="link-list"><p class="empty">No links reported.</p></div></section><p class="footer-note">Internal development evidence · latest encrypted publication checked every 40 seconds; publication and caching may delay newer evidence · not a release approval.</p></footer>
+  </main>
+</div>
+</body>
+</html>
